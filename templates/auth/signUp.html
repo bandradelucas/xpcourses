@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+      <h2>Cadastro</h2>
+      <form method="POST" action="{% url 'signUp' %}">
+        {% csrf_token %}
+        <div class="form-group mt-3">
+          <label class="label" for="email">E-mail</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="E-mail"
+            name="email"
+          />
+        </div>
+        <div class="form-group mt-3">
+          <label class="label" for="password">Senha</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Senha"
+            name="password"
+          />
+        </div>
+        <div class="form-group mt-3">
+          <label class="label" for="username">Nick</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Nome do personagem"
+            name="username"
+          />
+        </div>
+        <div class="form-group mt-3">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary">Homem</button>
+            <button type="button" class="btn btn-primary">Mulher</button>
+            <button type="button" class="btn btn-primary">Robô</button>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <picture>
+            <source
+              srcset="https://avatars.dicebear.com/api/female/aqua.svg"
+              type="image/svg+xml"
+            />
+            <img
+              src="https://avatars.dicebear.com/api/female/aqua.svg"
+              class="img-fluid img-thumbnail"
+              alt="character"
+            />
+          </picture>
+        </div>
+        <div class="d-grid gap-2 mt-3">
+          <button class="btn btn-pink" type="submit">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block content %}
+<div class="vertical-menu">
+  {% for skill in category.skills.all %}
+  <a href="#" class="active">
+    <ul>
+      <li>{{ skill.name }}</li>
+    </ul>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}
