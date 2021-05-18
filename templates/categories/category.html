@@ -1,11 +1,31 @@
 {% extends "base.html" %} {% block content %}
-<div class="vertical-menu">
-  {% for skill in category.skills.all %}
-  <a href="#" class="active">
-    <ul>
-      <li>{{ skill.name }}</li>
-    </ul>
-  </a>
-  {% endfor %}
+<div class="row">
+  <div class="content p-5 col-9 col-md-9">
+    {% for skill in category.skills.all %}
+    <div id="skill-{{ skill.id }}">
+      {{ skill.content | safe }}
+      <button
+        id="{{ skill.id }}"
+        type="button btn-xp"
+        class="btn btn-purple"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        <a href="{% url 'updateSkill' skill.id %}">Coletar {{ skill.xp }} XP</a>
+        <img src="https://img.icons8.com/color/96/000000/treasure-chest.png" style="width: 40px;"/>
+      </button>
+    </div>
+    <br /><br /><br />
+    {% endfor %}
+  </div>
+  <div class="vertical-menu col-3 col-md-3">
+    {% for skill in category.skills.all %}
+    <a href="#skill-{{ skill.id }}" class="active">
+      <ul>
+        <li>{{ skill.name }}</li>
+      </ul>
+    </a>
+    {% endfor %}
+  </div>
 </div>
-{% endblock %}
+{% include 'modalXP.html' %} {% endblock %}

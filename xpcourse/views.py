@@ -24,7 +24,8 @@ def signUp(request):
     if request.method == 'POST':
         user = User.objects.create(
             username=request.POST['username'],
-            email=request.POST['email']
+            email=request.POST['email'],
+            character_img=request.POST['character_img']
         )
         user.set_password(request.POST['password'])
         user.save()

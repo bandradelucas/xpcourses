@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'categories.apps.CategoriesConfig',
     'skills.apps.SkillsConfig',
-    'users'
+    'users',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
