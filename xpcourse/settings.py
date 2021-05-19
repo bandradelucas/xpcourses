@@ -135,3 +135,7 @@ MEDIA_ROOT = (
 MEDIA_URL = '/media/' #endereço para acessar os arquivos
 
 AUTH_USER_MODEL = 'users.User'
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
