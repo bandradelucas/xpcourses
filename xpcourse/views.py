@@ -36,3 +36,14 @@ def signUp(request):
 def signOut(request):
     logout(request)
     return redirect('index')
+
+def getLvl(currentXP):
+    baseXP = 200
+    multiplier = 2
+    level = 0
+    nextLevelXP = 0
+
+    while currentXP >= nextLevelXP:
+        level += 1
+        nextLevelXP = level * baseXP * multiplier
+    return level

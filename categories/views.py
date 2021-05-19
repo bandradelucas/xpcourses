@@ -21,17 +21,3 @@ def category(request, category_id):
     context = {'category': category}
 
     return render(request, 'categories/category.html', context)
-
-def updateSkill(request, skill_id):
-    skill = Skill.objects.get(pk=skill_id)
-    user = request.user
-    user.xp = user.xp + skill.xp
-
-    user.post(user.xp)
-
-    user.save()
-
-    context = {'user': user}
-
-    return render(request, 'categories/category.html', context)
-

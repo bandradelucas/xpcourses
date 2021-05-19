@@ -8,11 +8,13 @@
         id="{{ skill.id }}"
         type="button btn-xp"
         class="btn btn-purple"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        onclick="addXP({{ skill.id }})"
       >
-        <a href="{% url 'updateSkill' skill.id %}">Coletar {{ skill.xp }} XP</a>
-        <img src="https://img.icons8.com/color/96/000000/treasure-chest.png" style="width: 40px;"/>
+        Coletar {{ skill.xp }} XP
+        <img
+          src="https://img.icons8.com/color/96/000000/treasure-chest.png"
+          style="width: 40px"
+        />
       </button>
     </div>
     <br /><br /><br />
@@ -27,5 +29,30 @@
     </a>
     {% endfor %}
   </div>
+  {% csrf_token %}
+  <script>
+    const csrftoken = document.querySelector(
+      "[name=csrfmiddlewaretoken]"
+    ).value;
+    function addXP(skill_id) {
+      const request = new Request(`/skills/${skill_id}/`, {
+        headers: { "X-CSRFToken": csrftoken },
+      });
+      fetch(request, {
+        method: "POST",
+        mode: "same-origin", // Do not send CSRF token to
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("xp").innerHTML = data.xp;
+          document.getElementById("lvl").innerHTML = data.lvl;
+
+          new bootstrap.Modal(
+            document.getElementById("modalXP"),
+            {}
+          ).show();
+        });
+    }
+  </script>
 </div>
 {% include 'modalXP.html' %} {% endblock %}

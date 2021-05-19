@@ -9,5 +9,4 @@ urlpatterns = [
     
     # ex: /categories/5/
     path('<int:category_id>/', views.category, name='category'),
-    path('<int:skill_id>/', views.updateSkill, name='updateSkill'),
 ]
